@@ -8,22 +8,22 @@ img {
 
 .fitter {
   position: relative;
-  left: 8.6vw;
-  top: 30px;
+  left: 7.6vw;
+  top: 3vh;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  font-size: 24px;
+  width: 2vw;
+  height: 4vh;
+  font-size: 20px;
   background-color: rgb(45, 199, 45);
   border-radius: 100px;
 }
 
 .image-card {
-  width: 200px;
-  height: 200px;
+  width: 8vw;
+  height: 15vh;
   display: flex;
   align-items: center;
   justify-content: center;

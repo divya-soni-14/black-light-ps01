@@ -6,6 +6,13 @@ import axios from 'axios';
 
 
 export default function ImageGrid() {
+    let images = [
+        { imgsrc: logo, selected: true, number: "3" },
+        { imgsrc: logo, selected: true, number: "3" },
+        { imgsrc: logo, selected: true, number: "3" },
+        { imgsrc: logo, selected: true, number: "3" },
+        { imgsrc: logo, selected: true, number: "3" },
+    ];
 
     const [imageData, setImageData] = useState([]);
     const [imageCount, setImageCount] = useState(0);
@@ -122,7 +129,9 @@ export default function ImageGrid() {
                             </div>)
                     })}
             </div>
-
-        </div >
-    );
+            );
+        })}
+        </div>
+    </div >
+  );
 }
