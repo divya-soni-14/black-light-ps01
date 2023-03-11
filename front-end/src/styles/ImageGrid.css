@@ -18,3 +18,14 @@
 .flex-container {
     margin: 0 15%;
 }
+
+.password-flex-container {
+    display: flex;
+    flex-direction: row;
+    margin: -30px auto;
+    justify-content: center;
+}
+
+.password-flex-item {
+    margin: 20px;
+}

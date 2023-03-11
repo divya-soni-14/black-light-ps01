@@ -1,6 +1,7 @@
 img {
-  max-width: 300px;
-  max-height: 300px;
+  max-width: 190px;
+  max-height: 190px;
+  border-radius: 20px;
   display: block;
   /* remove extra space below image */
 }
