@@ -1,0 +1,17 @@
+.flex-container {
+    display: flex;
+    background-color: blue;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto 10%;
+}
+
+.flex-item {
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.black-color-bg {
+    background-color: #121418;
+}

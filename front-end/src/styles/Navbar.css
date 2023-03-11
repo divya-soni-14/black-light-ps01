@@ -1,0 +1,45 @@
+.navbar-container {
+    width: 100%;
+    border: 1px solid red;
+    color: white;
+    background-color: #121418;
+    display: flex;
+}
+
+.navbar-flex-container {
+    display: flex;
+    padding: 25px 10%;
+    flex-direction: row;
+    border: 1px solid yellow;
+}
+
+.navbar-outer-flex-item-left {
+    flex: 25%;
+    padding: 25px 10%;
+    flex-direction: row;
+    display: flex;
+}
+
+.navbar-outer-flex-item-center {
+    flex: 50%;
+}
+
+.navbar-outer-flex-item-right {
+    flex: 25%;
+}
+
+
+/* .navbar-flex-item {
+    display: inline;
+} */
+
+.navbar-logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.navbar-link {
+    padding: 0 50px;
+    font-weight: 500;
+    font-size: 1.3rem;
+}
