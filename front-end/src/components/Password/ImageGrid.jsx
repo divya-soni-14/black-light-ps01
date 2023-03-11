@@ -89,8 +89,8 @@ export default function ImageGrid() {
       <div
         style={{
           color: "white",
-          width: "100%",
-          border: "1px solid white",
+          width: "99%",
+          margin: "1%",
           textAlign: "center",
         }}
         className="imageGrid-password-field password-flex-container black-color-bg"

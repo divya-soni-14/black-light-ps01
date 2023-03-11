@@ -6,13 +6,9 @@ const Navbar = () => {
       <div className="navbar-outer-flex-item-left">
         <div className="navbar-logo">Encrypt</div>
       </div>
-      <div className="navbar-flex-container navbar-outer-flex-item-center">
-        <div className="navbar-flex-item  navbar-link">Encrypt</div>
-        <div className="navbar-flex-item  navbar-link">Encrypt</div>
-        <div className="navbar-flex-item  navbar-link">Encrypt</div>
-      </div>
-      <div className="navbar-flex-container navbar-outer-flex-item-right">
-        <div className="navbar-flex-item navbar-logo">Encrypt</div>
+      <div className="navbar-outer-flex-item-right">
+        <div className="navbar-link">Sign Up</div>
+        <div className="navbar-link">Log In</div>
       </div>
     </div>
   );
