@@ -3,11 +3,21 @@ import ImageCard from "./components/Password/ImageCard.jsx";
 import logo from "./components/Password/nature.webp";
 import EnterPassword from "./pages/EnterPassword";
 import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import SignUpPage from "./pages/Register";
+import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <EnterPassword />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/password" element={<EnterPassword />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Router>
+
     </div>
   );
 }

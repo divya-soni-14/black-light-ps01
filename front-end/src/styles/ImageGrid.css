@@ -29,3 +29,13 @@
 .password-flex-item {
     margin: 20px;
 }
+
+
+
+a,
+a:visited,
+a:link {
+    font-weight: bold;
+    text-decoration: none;
+    color: white
+}
