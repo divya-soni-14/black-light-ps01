@@ -22,8 +22,8 @@ img {
 }
 
 .image-card {
-  width: 8vw;
-  height: 15vh;
+  width: 200px;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
