@@ -1,0 +1,8 @@
+.image-card {
+  width: 9vw;
+  height: 18vh;
+  background-color: black;
+  border: 5px solid;
+  border-color: rgb(45, 199, 45);
+  border-radius: 20px;
+}
