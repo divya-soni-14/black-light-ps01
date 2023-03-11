@@ -3,7 +3,20 @@ img {
   max-height: 100%;
   display: block; /* remove extra space below image */
 }
-
+.fitter {
+  position: relative;
+  left: 8.6vw;
+  top: 30px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  background-color: rgb(45, 199, 45);
+  border-radius: 100px;
+}
 .image-card {
   width: 9vw;
   height: 18vh;
