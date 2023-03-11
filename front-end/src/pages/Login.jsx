@@ -1,11 +1,11 @@
-import '../../styles/ImageGrid.css';
+import '../styles/ImageGrid.css';
 import { useState } from 'react';
-import ImageCard from './ImageCard';
-import logo from './logo.svg';
+import ImageCard from '../components/Password/ImageCard';
+import logo from '../components/Password/logo.svg';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-export default function ImageGrid() {
+export default function Login() {
     const [form, setForm] = useState(false);
     const [signed, setSigned] = useState(false);
     const [prompt, setPrompt] = useState("");
@@ -34,6 +34,17 @@ export default function ImageGrid() {
         standardArray.push(0);
     const [activeList, setActiveList] = useState(standardArray);
     const ACCESS_KEY = 'FdXIacPMTKkGr4PVaOXv2t6I1J2XBaFZ9ks54xuAfa8'; // replace with your own Unsplash access key
+
+    async function getImageIDs() {
+        const params = JSON.stringify({
+            email: formData.email
+        })
+        const response = await axios.get('http://144.24.133.212:3000/api/image_ids', {
+            params: params
+        })
+        console.log(await response);
+
+    }
 
     async function getRandomImages(count) {
         const response = await axios.get(`https://api.unsplash.com/photos/random?client_id=${ACCESS_KEY}&count=${count}&orientation=squarish`);
@@ -154,7 +165,7 @@ export default function ImageGrid() {
                             setSigned(true);
                         })
 
-                    }}>Confirm Password</button>
+                    }}>Login</button>
 
                 <div className="grid-flex-container">
 
@@ -188,8 +199,10 @@ export default function ImageGrid() {
                 <br />
                 <br />
                 <button onClick={() => {
-                    if (formData.email)
+                    if (formData.email) {
                         setForm(true);
+                        getImageIDs();
+                    }
                 }} type="submit">
                     Continue
                 </button>

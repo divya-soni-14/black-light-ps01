@@ -5,6 +5,7 @@ import EnterPassword from "./pages/EnterPassword";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import SignUpPage from "./pages/Register";
+import Login from "./pages/Login";
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/password" element={<EnterPassword />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </Router>

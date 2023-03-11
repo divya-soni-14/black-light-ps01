@@ -6,3 +6,8 @@ body {
   font-family: 'Manrope',
     sans-serif;
 }
+
+.white-color {
+  color: white;
+  text-align: center;
+}
