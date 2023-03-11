@@ -17,3 +17,11 @@ img {
   border-color: rgb(45, 199, 45);
   border-radius: 20px;
 }
+
+.select {
+  border-color: rgb(45, 199, 45);
+}
+
+.nselect {
+  border-color: rgb(68, 45, 199);
+}
