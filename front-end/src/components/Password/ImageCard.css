@@ -1,0 +1,43 @@
+img {
+  max-width: 300px;
+  max-height: 300px;
+  display: block;
+  /* remove extra space below image */
+}
+
+.fitter {
+  position: relative;
+  left: 8.6vw;
+  top: 30px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  background-color: rgb(45, 199, 45);
+  border-radius: 100px;
+}
+
+.image-card {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* object-fit: cover;
+  overflow: hidden; */
+  background-color: transparent;
+  border: 5px solid;
+  border-color: rgb(45, 199, 45);
+  border-radius: 20px;
+}
+
+.select {
+  border-color: rgb(45, 199, 45);
+}
+
+.nselect {
+  border-color: rgb(68, 45, 199);
+}

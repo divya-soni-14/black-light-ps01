@@ -1,12 +1,16 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Navbar from "./components/Navbar";
+import ImageCard from "./components/Password/ImageCard.jsx";
+import logo from "./components/Password/nature.webp";
 import EnterPassword from "./pages/EnterPassword";
+import Navbar from "./components/Navbar";
 function App() {
-  return <div className="App">
-    <Navbar />
-    <EnterPassword />
-  </div>;
+  return (
+    <div className="App">
+      <Navbar />
+      <EnterPassword />
+
+    </div>
+  );
 }
 
 export default App;
