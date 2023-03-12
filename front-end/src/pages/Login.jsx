@@ -4,11 +4,11 @@ import ImageCard from '../components/Password/ImageCard';
 import logo from '../components/Password/logo.svg';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
 
 export default function Login() {
     const [form, setForm] = useState(false);
     const [signed, setSigned] = useState(false);
-    const [prompt, setPrompt] = useState("");
     const [formData, setFormData] = useState({
         email: '',
     });
@@ -33,26 +33,16 @@ export default function Login() {
     for (let i = 0; i < 30; i++)
         standardArray.push(0);
     const [activeList, setActiveList] = useState(standardArray);
-    const ACCESS_KEY = 'FdXIacPMTKkGr4PVaOXv2t6I1J2XBaFZ9ks54xuAfa8'; // replace with your own Unsplash access key
+
 
     async function getImageIDs() {
-        const params = JSON.stringify({
+        console.log(formData.email)
+        const response = await axios.post('http://144.24.133.212:3000/api/image_ids', {
             email: formData.email
         })
-        const response = await axios.get('http://144.24.133.212:3000/api/image_ids', {
-            params: params
-        })
-        console.log(await response);
-
-    }
-
-    async function getRandomImages(count) {
-        const response = await axios.get(`https://api.unsplash.com/photos/random?client_id=${ACCESS_KEY}&count=${count}&orientation=squarish`);
         return response;
+
     }
-
-    let images = [{ imgsrc: logo, selected: true, number: "1" }, { imgsrc: logo, selected: true, number: "2" }, { imgsrc: logo, selected: true, number: "3" }, { imgsrc: logo, selected: true, number: "4" }, { imgsrc: logo, selected: true, number: "5" }, { imgsrc: logo, selected: true, number: "6" }]
-
     const [active, setActive] = useState([]);
     let defaultOrder = [-1, -1, -1, -1, -1];
     const [order, setOrder] = useState(defaultOrder);
@@ -107,9 +97,9 @@ export default function Login() {
             <div className="imageGrid-container black-color-bg">
                 <div style={{ color: 'white', width: '100%', border: '1px solid white', textAlign: 'center' }} className="imageGrid-password-field password-flex-container black-color-bg">
                     {imageData.map((image) => {
+                        console.log(image)
                         let index = imageData.indexOf(image);
-                        console.log(index);
-                        console.log(activeList[index]);
+
                         if (activeList[index])
                             return (
                                 <div
@@ -119,54 +109,36 @@ export default function Login() {
                                     }}
                                     className="password-flex-item">
                                     <ImageCard
-                                        imgsrc={image.urls.small} selected={activeList[index]} number={index} />
+                                        imgsrc={image.image_url} selected={activeList[index]} number={index} />
                                 </div>
                             )
+
                     })}
                 </div>
 
-                <button style={imageData.length ? { display: "none" } : { display: "block" }} onClick={() => {
-                    getRandomImages(30).then((images) => {
-                        setImageData(images.data);
-                        console.log(images.data);
-                    }).catch((error) => {
-                        console.error(error);
-                    });
-                }}>Get Images</button>
+                <div className="confirm-btn-wrap">
+                    <button className="confirm-btn" style={(imageCount != 5) ? { display: "none" } : { display: "block" }} onClick={
 
-                <button style={(imageCount != 5) ? { display: "none" } : { display: "block" }} onClick={
+                        () => {
+                            let password = "";
+                            for (let i = 0; i < 5; i++) {
+                                console.log(order[i]);
+                                password = password + imageData[order[i]].image_id;
+                            }
 
-                    () => {
-                        let password = "";
-                        let descriptions = [];
-                        console.log(order);
-                        for (let i = 0; i < 5; i++) {
-                            console.log(order[i]);
-                            password = password + imageData[order[i]].id;
-                            console.log(imageData[order[i]])
-                            descriptions.push(imageData[order[i]].alt_description);
+                            axios.post('http://144.24.133.212:3000/api/login', {
+                                email: formData.email,
+                                password: password,
+                            }).then((response) => {
+                                console.log("the response", response.data);
+                                if (response.data.msg == "Incorrect password") {
+                                    console.log("bad password");
+                                } else
+                                    setSigned(true);
+                            })
 
-                        }
-                        console.log(descriptions);
-                        let ids = [];
-                        imageData.map((image) => {
-                            ids.push(image.id);
-                        })
-
-                        axios.post('http://144.24.133.212:3000/api/signup', {
-                            email: formData.email,
-                            password: password,
-                            image_ids: ids,
-                            image_desc: descriptions
-
-                        }).then((response) => {
-                            console.log(response);
-                            setPrompt(response.data.prompt);
-                            setSigned(true);
-                        })
-
-                    }}>Login</button>
-
+                        }}>Login</button>
+                </div>
                 <div className="grid-flex-container">
 
                     {
@@ -180,7 +152,7 @@ export default function Login() {
                                     }}
                                     className="flex-item" >
                                     <ImageCard
-                                        imgsrc={image.urls.small} selected={activeList[index]} number={index}
+                                        imgsrc={image.image_url} selected={activeList[index]} number={index}
 
                                     />
                                 </div>)
@@ -201,7 +173,18 @@ export default function Login() {
                 <button onClick={() => {
                     if (formData.email) {
                         setForm(true);
-                        getImageIDs();
+                        getImageIDs().then(data => {
+                            let img_arr = [];
+
+                            for (let i = 0; i < data.data.image_ids.length; i++) {
+
+                                let img_data = {};
+                                img_data.image_id = data.data.image_ids[i];
+                                img_data.image_url = data.data.image_urls[i];
+                                img_arr.push(img_data);
+                            }
+                            setImageData(img_arr);
+                        });
                     }
                 }} type="submit">
                     Continue
@@ -214,11 +197,6 @@ export default function Login() {
                 <h2 className='white-color'>
                     Congratulations! You have signed in!
                 </h2>
-                <p className='white-color'>
-                    Here's your prompt: <br />
-                    {prompt}
-                </p >
-
             </>
         )
     }

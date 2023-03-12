@@ -13,7 +13,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/signup" element={<EnterPassword />} />
           <Route path="/password" element={<EnterPassword />} />
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />

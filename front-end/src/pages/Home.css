@@ -1,0 +1,78 @@
+.home-title {
+    color: white;
+    font-weight: bold;
+    font-size: 5rem;
+    ;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.home-container {
+    height: 99vh;
+    margin-top: -10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.accent-color {
+    background: linear-gradient(90deg, rgba(45, 185, 94, 1) 0%, rgba(246, 231, 44, 1) 94%);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.home-byline {
+    font-size: 1.5rem;
+    margin-top: -50px;
+    text-align: center;
+    color: white;
+}
+
+.home-button {
+    width: 14vw;
+    color: white;
+    background-color: black;
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-size: large;
+    border-radius: 8px;
+    padding: 10px 0;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.home-button:hover {
+    background-color: white;
+    color: black;
+    transition: 0.4s;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+
+.card-container {
+    margin: 5% 10% 0 10%;
+    padding: 3rem 6rem;
+    border-radius: 15px;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}

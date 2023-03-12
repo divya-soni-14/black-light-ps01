@@ -4,7 +4,7 @@ const Navbar = () => {
     return (
         <div className="navbar-container">
             <div className="navbar-outer-flex-item-left">
-                <div className="navbar-logo">Encrypt</div>
+                <div className="navbar-logo accent-color">Encrypt</div>
             </div>
             <div className="navbar-outer-flex-item-right">
                 <div className="navbar-link">Sign Up</div>

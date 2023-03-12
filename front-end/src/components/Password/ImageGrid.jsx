@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-export default function ImageGrid() {
+function ImageGrid() {
     const [form, setForm] = useState(false);
     const [signed, setSigned] = useState(false);
     const [prompt, setPrompt] = useState("");
@@ -95,7 +95,24 @@ export default function ImageGrid() {
         return (
             <div className="imageGrid-container black-color-bg">
                 <div style={{ color: 'white', width: '100%', border: '1px solid white', textAlign: 'center' }} className="imageGrid-password-field password-flex-container black-color-bg">
-                    {imageData.map((image) => {
+                    {
+                        order.map((index) => {
+                            let image = imageData[index];
+                            console.log(image);
+                            if (image)
+                                return (
+                                    <div
+                                        onClick={() => {
+                                            clickHandler(index)
+                                            setImageData([...imageData]);
+                                        }}
+                                        className="password-flex-item">
+                                        <ImageCard
+                                            imgsrc={image.urls.small} selected={activeList[index]} number={index} />
+                                    </div>
+                                )
+                        })}
+                    {/* {imageData.map((image) => {
                         let index = imageData.indexOf(image);
                         console.log(index);
                         console.log(activeList[index]);
@@ -111,51 +128,57 @@ export default function ImageGrid() {
                                         imgsrc={image.urls.small} selected={activeList[index]} number={index} />
                                 </div>
                             )
-                    })}
+                    })} */}
                 </div>
 
-                <button style={imageData.length ? { display: "none" } : { display: "block" }} onClick={() => {
-                    getRandomImages(30).then((images) => {
-                        setImageData(images.data);
-                        console.log(images.data);
-                    }).catch((error) => {
-                        console.error(error);
-                    });
-                }}>Get Images</button>
+                <div className="get-images-btn-wrap">
 
-                <button style={(imageCount != 5) ? { display: "none" } : { display: "block" }} onClick={
+                    <button className="get-images-btn" style={imageData.length ? { display: "none" } : { display: "block" }} onClick={() => {
+                        console.log("clicked")
+                        getRandomImages(30).then((images) => {
+                            setImageData(images.data);
+                            console.log(images.data);
+                        }).catch((error) => {
+                            console.error(error);
+                        });
+                    }}>Generate Graphic Password</button>
+                </div>
+                <div className='confirm-btn-wrap'>
 
-                    () => {
-                        let password = "";
-                        let descriptions = [];
-                        console.log(order);
-                        for (let i = 0; i < 5; i++) {
-                            console.log(order[i]);
-                            password = password + imageData[order[i]].id;
-                            console.log(imageData[order[i]])
-                            descriptions.push(imageData[order[i]].alt_description);
 
-                        }
-                        console.log(descriptions);
-                        let ids = [];
-                        imageData.map((image) => {
-                            ids.push(image.id);
-                        })
+                    <button className="confirm-btn" style={(imageCount != 5) ? { display: "none" } : { display: "block" }} onClick={
 
-                        axios.post('http://144.24.133.212:3000/api/signup', {
-                            email: formData.email,
-                            password: password,
-                            image_ids: ids,
-                            image_desc: descriptions
+                        () => {
+                            let password = "";
+                            let descriptions = [];
+                            console.log(order);
+                            for (let i = 0; i < 5; i++) {
+                                console.log(order[i]);
+                                password = password + imageData[order[i]].id;
+                                console.log(imageData[order[i]])
+                                descriptions.push(imageData[order[i]].alt_description);
 
-                        }).then((response) => {
-                            console.log(response);
-                            setPrompt(response.data.prompt);
-                            setSigned(true);
-                        })
+                            }
+                            console.log(descriptions);
+                            let ids = [];
+                            imageData.map((image) => {
+                                ids.push(image.id);
+                            })
 
-                    }}>Confirm Password</button>
+                            axios.post('http://144.24.133.212:3000/api/signup', {
+                                email: formData.email,
+                                password: password,
+                                image_ids: ids,
+                                image_desc: descriptions
 
+                            }).then((response) => {
+                                console.log(response);
+                                setPrompt(response.data.prompt);
+                                setSigned(true);
+                            })
+
+                        }}>Confirm Password</button>
+                </div>
                 <div className="grid-flex-container">
 
                     {
@@ -181,13 +204,13 @@ export default function ImageGrid() {
     else if (!form)
         return (
             <form className="sign-up-form" onSubmit={handleSubmit}>
+                <h1>Enter your email address</h1>
                 <label>
-                    Email:
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} />
+                    <input className="email-input" type="email" name="email" value={formData.email} onChange={handleChange} />
                 </label>
                 <br />
                 <br />
-                <button onClick={() => {
+                <button className=" submit-btn" onClick={() => {
                     if (formData.email)
                         setForm(true);
                 }} type="submit">
@@ -209,4 +232,18 @@ export default function ImageGrid() {
             </>
         )
     }
+}
+const Spinner = () => {
+    return (
+        <>
+            <div>Loading</div>
+        </>
+    );
+}
+
+export default function ParentComp() {
+    const [isLoading, setLoading] = useState(false);
+    return (<>
+        {isLoading ? <Spinner /> : <ImageGrid />}
+    </>)
 }

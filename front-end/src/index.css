@@ -4,8 +4,6 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-
-
 * {
   font-family: 'Manrope',
     sans-serif;
@@ -14,4 +12,16 @@ body {
 .white-color {
   color: white;
   text-align: center;
+}
+
+.button {
+  color: "black";
+  background: linear-gradient(90deg,
+      rgba(45, 185, 94, 1) 0%,
+      rgba(246, 231, 44, 1) 94%);
+  width: 14vw;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-size: large;
+  border-radius: 8px;
 }
