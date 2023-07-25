@@ -232,6 +232,7 @@ function ImageGrid() {
             </>
         )
     }
+
 }
 const Spinner = () => {
     return (

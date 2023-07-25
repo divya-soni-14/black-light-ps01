@@ -1,4 +1,5 @@
 import React from "react";
+
 import "../components/Password/EnterPassword.css";
 import ImageGrid from "../components/Password/ImageGrid";
 const EnterPassword = () => {
